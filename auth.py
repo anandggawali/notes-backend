@@ -5,16 +5,16 @@ from datetime import datetime, timedelta
 SECRET_KEY = "mysecretkey"
 ALGORITHM = "HS256"
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(
+    schemes=["bcrypt"],
+    deprecated="auto"
+)
 
-
-def hash_password(password):
+def hash_password(password: str):
     return pwd_context.hash(password)
-
 
 def verify_password(plain, hashed):
     return pwd_context.verify(plain, hashed)
-
 
 def create_token(data: dict):
     payload = data.copy()
